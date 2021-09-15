@@ -1,0 +1,47 @@
+From 707082c3eed375f80c9ab28b314656873b31c025 Mon Sep 17 00:00:00 2001
+From: Kayla Reynolds-Davis <kayla.reynolds-davis@student.tafesa.edu.au>
+Date: Wed, 15 Sep 2021 10:10:57 +0930
+Subject: [PATCH] Commit Added the delivery charge $25
+
+---
+ ProductMaintenance/ProductApps/MainWindow.xaml    | 2 ++
+ ProductMaintenance/ProductApps/MainWindow.xaml.cs | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/ProductMaintenance/ProductApps/MainWindow.xaml b/ProductMaintenance/ProductApps/MainWindow.xaml
+index f327eca..a0fac6e 100644
+--- a/ProductMaintenance/ProductApps/MainWindow.xaml
++++ b/ProductMaintenance/ProductApps/MainWindow.xaml
+@@ -7,7 +7,9 @@
+         <Label Content="Price $:" HorizontalAlignment="Left" Height="30" Margin="46,78,0,0" VerticalAlignment="Top" Width="61"/>
+         <Label Content="Quantity:" HorizontalAlignment="Left" Height="30" Margin="48,113,0,0" VerticalAlignment="Top" Width="69" RenderTransformOrigin="0.371,0.498"/>
+         <Label Content="Total Payment $:" HorizontalAlignment="Left" Height="30" Margin="46,160,0,0" VerticalAlignment="Top" Width="96"/>
++        <Label Content="Total Charge after adding &#xA;the delivery charge ($25):" HorizontalAlignment="Left" Height="50" Margin="46,207,0,0" VerticalAlignment="Top" Width="150"/>
+         <TextBlock Name="totalPaymentTextBlock" HorizontalAlignment="Left" Height="23" Margin="164,167,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
++        <TextBlock x:Name="totalChargeTextBlock" HorizontalAlignment="left" Height="23" Margin="210,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
+         <TextBox Name="productTextBox" HorizontalAlignment="Left" Height="24" Margin="122,37,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="96"/>
+         <TextBox Name="priceTextBox" HorizontalAlignment="Left" Height="24" Margin="122,78,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="77"/>
+         <TextBox x:Name="quantityTextBox" HorizontalAlignment="Left" Height="24" Margin="122,119,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="77"/>
+diff --git a/ProductMaintenance/ProductApps/MainWindow.xaml.cs b/ProductMaintenance/ProductApps/MainWindow.xaml.cs
+index 1af0c20..18cb2c2 100644
+--- a/ProductMaintenance/ProductApps/MainWindow.xaml.cs
++++ b/ProductMaintenance/ProductApps/MainWindow.xaml.cs
+@@ -34,6 +34,7 @@ namespace ProductApps
+                 cProduct = new Product(Convert.ToDecimal(priceTextBox.Text), Convert.ToInt16(quantityTextBox.Text));
+                 cProduct.calTotalPayment();
+                 totalPaymentTextBlock.Text = Convert.ToString(cProduct.TotalPayment);
++                totalChargeTextBlock.Text = Convert.ToString(cProduct.TotalPayment + 25);
+             }
+             catch (FormatException)
+             {
+@@ -47,6 +48,7 @@ namespace ProductApps
+             priceTextBox.Text = "";
+             quantityTextBox.Text = "";
+             totalPaymentTextBlock.Text = "";
++            totalChargeTextBlock.Text = "";
+         }
+ 
+         private void closeButton_Click(object sender, RoutedEventArgs e)
+-- 
+2.33.0.windows.1
+
